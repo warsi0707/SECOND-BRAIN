@@ -9,7 +9,7 @@ export default function SharedHomePage(){
     const dispatch = useAppDispatch()
     const {items, loading} = useAppSelector(state=> state.user.listing)
     const {id} = useParams<string>()
-   const [searchParams, setSearchParams] = useSearchParams();
+   const [searchParams] = useSearchParams();
     const userid = searchParams.get('userid')
 
     useEffect(()=>{
