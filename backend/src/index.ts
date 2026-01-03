@@ -1,7 +1,7 @@
 import express from 'express'
 import userRouter from './routes/userRouter.js'
 import ConnectDB from './config/DatabaseConnection.js'
-import { MONGO_URL } from './config/envConfig.js'
+import { FRONTEND_URL, MONGO_URL } from './config/envConfig.js'
 import contentRouter from './routes/contentRouter.js'
 import cors from 'cors'
 
@@ -10,7 +10,7 @@ const app = express()
 app.use(express.json())
 
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: FRONTEND_URL,
     credentials: true
 }))
 
