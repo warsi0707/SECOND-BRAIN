@@ -5,9 +5,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon src/index.ts",
+    "dev": "node src/index.ts",
     "build": "tsc -b",
-    "start": "node dist/index.js"
+    "start": "npm run build && nodemon dist/index.js"
 
   },
   "keywords": [],
