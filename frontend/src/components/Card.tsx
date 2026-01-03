@@ -32,7 +32,7 @@ interface Cardprops {
 function Card({listing}: Cardprops){
     const dispatch = useAppDispatch()
     const {isAuthenticated} = useAppSelector(state=> state.user.user)
-    const {date, month, year,time} = useDateFormater(listing.createdAt)
+    const {date, month,time} = useDateFormater(listing.createdAt)
     const [isSharing, setIsSharing] = useState<boolean>(false)
 
     const handleDelte =(id:string)=>{

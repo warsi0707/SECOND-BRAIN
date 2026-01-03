@@ -24,7 +24,7 @@ interface Shareprops {
  function ShareBrain({listing,onclose}: Shareprops){
     const [isCopied, setIsCopied] = useState<boolean>(false)
 
-    const handleCopyLink = async(e: React.MouseEvent<HTMLButtonElement>)=>{
+    const handleCopyLink = async()=>{
         if(listing.length >1){
             const userid = listing.map((item)=> item.userId?._id)
             await navigator.clipboard.writeText(`http://localhost:5173/shared-contents?userid=${userid[0]}`)
