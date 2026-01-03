@@ -1,9 +1,16 @@
-export default function YoutubeEmbed(){
+import { memo } from "react"
+interface YoutubeProp {
+    link:string,
+    className?: string
+}
+
+ function YoutubeEmbed({link}: YoutubeProp){
+    const finalLink = link.replace('youtu.be','youtube.com/embed')
     return (
         <iframe
-            height="180"
+            height="190"
             className="w-full rounded-md"
-            src={`https://www.youtube.com/embed/`}
+            src={`${finalLink}`}
             title="YouTube video player"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             referrerPolicy="strict-origin-when-cross-origin"
@@ -11,3 +18,4 @@ export default function YoutubeEmbed(){
       </iframe>
     )
 }
+export default memo(YoutubeEmbed)

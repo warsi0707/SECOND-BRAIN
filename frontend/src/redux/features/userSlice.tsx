@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { deleteListingThunk, getListingThunk, postThunk, userSignInThunk, userSignupThunk } from "./userThunks";
+import { deleteListingThunk, getListingThunk, getSharedItemById, getSharedItemByUser, postThunk, userSignInThunk, userSignupThunk } from "./userThunks";
 import toast from "react-hot-toast";
 
 interface User {
@@ -130,6 +130,26 @@ export const userSlice = createSlice({
             state.listing.loading = false
             toast.success(action.payload.message)
             state.listing.items =  state.listing.items.filter((item)=> item._id !== action.payload.content._id)
+        })
+        .addCase(getSharedItemById.pending, (state)=>{
+            state.listing.loading = true
+        })
+        .addCase(getSharedItemById.rejected, (state)=>{
+            state.listing.loading = false
+        })
+        .addCase(getSharedItemById.fulfilled, (state,action)=>{
+            state.listing.loading = false
+            state.listing.items = [action.payload.content]
+        })
+        .addCase(getSharedItemByUser.pending, (state)=> {
+            state.listing.loading = true
+        })
+        .addCase(getSharedItemByUser.rejected, (state)=> {
+            state.listing.loading = false
+        })
+        .addCase(getSharedItemByUser.fulfilled, (state, action)=> {
+            state.listing.loading = false
+            state.listing.items = action.payload.content
         })
     }
 })

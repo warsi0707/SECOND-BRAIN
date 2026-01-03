@@ -1,10 +1,26 @@
-import { Link } from "react-router";
+import { memo } from "react";
+import { Tweet } from "react-tweet";
 
-export default function TwitterEmbed(){
-    
-    return (
-        <div>
-        <blockquote className="twitter-tweet h-32">  <Link to="https://x.com/nitesh_singh5/status/2002626925475619067">December 21, 2025</Link></blockquote>
-        </div>
-    )
+interface Tweet {
+  link: string;
 }
+
+function TwitterEmbed({ link }: Tweet) {
+  const getTweetId = (url: string) => {
+    const match = url.match(/status\/(\d+)/);
+    return match ? match[1] : null;
+  };
+
+  const tweetId = getTweetId(link);
+
+  if (!tweetId) {
+    return <div>Invalid tweet URL</div>;
+  }
+  return (
+    <div className="">
+      <Tweet id={tweetId} />
+    </div>
+  );
+}
+
+export default memo(TwitterEmbed);

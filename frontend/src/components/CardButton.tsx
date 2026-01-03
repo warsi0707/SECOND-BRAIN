@@ -3,7 +3,7 @@ import  React, { memo, type ReactElement } from "react"
 interface ButtonProps {
     icon: ReactElement,
     title: string,
-    onclick?:()=>  React.MouseEventHandler<HTMLButtonElement> | undefined
+    onclick?:  React.MouseEventHandler<HTMLButtonElement> 
 }
 
 function CardButton({icon, title, onclick}: ButtonProps){

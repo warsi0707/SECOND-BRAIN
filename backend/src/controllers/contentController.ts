@@ -2,6 +2,7 @@ import type { Request, Response } from "express";
 import Content from "../model/contentModel.js";
 import { contentSchema } from "../schema/zodSchema.js";
 import { z } from 'zod'
+import mongoose from "mongoose";
 
 export const getContents =async(req:Request & {user?: any}, res:Response)=>{
     try{
@@ -50,9 +51,27 @@ export const postContent = async(req: Request &{user?: any}, res:Response)=>{
 export const sharedContent = async(req: Request, res:Response)=>{
     const {id} = req.params;
     try{
-        const content = await Content.findById({id})
+        const content = await Content.findById(id).populate('userId', '-password')
+        if(!content){
+            return res.json({
+                content: {}
+            })
+        }
         return res.json({
             content
+        })
+    }catch(error){
+        return res.status(404).json({
+            error: error
+        })
+    }
+}
+export const sharedContents = async(req:Request, res:Response)=>{
+    const {userid} = req.query
+    try{
+        const content = await Content.find({userId: new mongoose.Types.ObjectId(userid as string)}).populate('userId', '-password')
+        return res.json({
+            content: content
         })
     }catch(error){
         return res.status(404).json({
