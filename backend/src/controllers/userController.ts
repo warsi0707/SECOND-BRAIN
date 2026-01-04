@@ -74,6 +74,7 @@ export const signin = async(req:Request, res:Response)=>{
                 message: "Signin success",
                 token: token, 
                 user: {
+                    userId: user._id,
                     email: user.email,
                     fullName: user.fullName
                 }

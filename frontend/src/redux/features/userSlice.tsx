@@ -3,7 +3,7 @@ import { deleteListingThunk, getListingThunk, getSharedItemById, getSharedItemBy
 import toast from "react-hot-toast";
 
 interface User {
-    id: string, 
+    userId: string, 
     email: string,
     fullName: string
 }

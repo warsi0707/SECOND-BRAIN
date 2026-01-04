@@ -21,6 +21,7 @@ interface Listing {
     link?: string,
     tags?: string[],
     userId: {
+        _id?:string,
         email?: string,
         fullName?: string
     }
@@ -32,7 +33,7 @@ interface Cardprops {
 
 function Card({listing}: Cardprops){
     const dispatch = useAppDispatch()
-    const {isAuthenticated} = useAppSelector(state=> state.user.user)
+    const {user} = useAppSelector(state=> state.user.user)
     const {date, month,time} = useDateFormater(listing.createdAt)
     const [isSharing, setIsSharing] = useState<boolean>(false)
 
@@ -60,7 +61,7 @@ function Card({listing}: Cardprops){
                     <p>{listing.title}</p>
                 </div>
                 <div className="flex gap-2">
-                    {isAuthenticated ===true &&<>
+                    {user?.userId === listing.userId._id &&  <>
                     <CardButton onclick={()=> handleShare(listing._id)} title="Share" icon={<i className="fa-solid fa-share-nodes"></i>}/>
                     <CardButton onclick={()=> handleDelte(listing._id)} title="Delete" icon={<i className="fa-solid fa-trash"></i>}/></>}
                 </div>
