@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
-import Card from "../components/Card";
-import HomeButton from "../components/HomeButton";
+import HomeButton from "../components/buttons/HomeButton";
 import PostContent from "./PostContent";
-import LogoutButton from "../components/LogoutButton";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHooks";
 import { getListingThunk } from "../redux/features/userThunks";
 import ShareBrain from "../components/share/ShareBrain";
 import { Link } from "react-router";
 import Sidebar from "./Sidebar";
+import LogoutButton from "../components/buttons/LogoutButton";
+import Card from "../components/cards/Card";
+import HomeCardSkell from "../components/skeletons/HomeCardSkell";
 
 export default function Home(){
     const dispatch = useAppDispatch()
@@ -35,11 +36,7 @@ export default function Home(){
                         <Link to={"/signin"} className="bg-purple-primary text-white flex items-center p-2 px-4 rounded-md ">Signin</Link>}
                     </div>
                 </div>
-                {loading && <p>Loading...</p>}
-                {items.length <=0  &&
-                <div className="flex justify-center items-center mt-32">
-                    <h1 className="text-2xl font-bold">No listing</h1>
-                </div>}
+                {loading && <HomeCardSkell/>}
                 <div className="py-10 flex flex-col justify-center items-start md:grid md:grid-cols-2 xl:grid-cols-3 gap-5">
                     { items && items.map((listing)=> (
                         <Card key={listing._id} listing={listing}/>

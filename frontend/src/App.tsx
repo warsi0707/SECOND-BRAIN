@@ -1,10 +1,11 @@
 import {BrowserRouter, Routes, Route} from "react-router"
-import { lazy, useEffect } from "react"
+import { lazy, Suspense, useEffect } from "react"
 import { useAppDispatch, useAppSelector } from "./hooks/reduxHooks"
 import { authVerify } from "./redux/features/userSlice"
-import SharedHomePage from "./pages/SharedHomePage"
-import NotFound from "./pages/NotFound"
+import LoadingPage from "./pages/LoadingPage"
 
+const SharedHomePage = lazy(()=> import("./pages/SharedHomePage"))
+const NotFound = lazy(()=> import("./pages/NotFound"))
 const Home = lazy(()=> import("./pages/Home"))
 const Signup = lazy(()=> import("./pages/Signup"))
 const Signin = lazy(()=> import("./pages/Signin"))
@@ -19,6 +20,7 @@ function App() {
 
   return (
     <BrowserRouter>
+    <Suspense fallback={<LoadingPage/>}>
       <Routes>
         <Route path="/"  element={isAuthenticated? <Home/>: <Signin/>}/>
         <Route path="/signup" element={isAuthenticated? <Home/>: <Signup/>}/>
@@ -27,6 +29,7 @@ function App() {
         <Route path="/shared-contents" element={<SharedHomePage/>}/>
         <Route path="*" element={<NotFound/>}/>
       </Routes>
+      </Suspense>
     </BrowserRouter>
   )
 }

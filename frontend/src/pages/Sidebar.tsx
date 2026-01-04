@@ -1,4 +1,4 @@
-import NavButton from "../components/NavButton";
+import NavButton from "../components/buttons/NavButton";
 
 interface Props {
     className?: string

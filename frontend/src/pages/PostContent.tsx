@@ -1,7 +1,7 @@
 import { memo, useCallback, useState } from "react";
 import Input from "../components/Input";
-import PostButton from "../components/PostButton";
-import TagsButton from "../components/TagsButton";
+import PostButton from "../components/buttons/PostButton";
+import TagsButton from "../components/buttons/TagsButton";
 import { useAppDispatch } from "../hooks/reduxHooks";
 import { postThunk } from "../redux/features/userThunks";
 import { postItemLinkSchema, postItemNotesSchema } from "../schema/schema";

@@ -1,6 +1,6 @@
 import { Link } from "react-router";
 import FormInput from "../components/FormInput";
-import SignButton from "../components/SignButton";
+import SignButton from "../components/buttons/SignButton";
 import { useState } from "react";
 import { signinSchema } from "../schema/schema";
 import { z } from "zod";

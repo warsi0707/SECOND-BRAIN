@@ -1,9 +1,9 @@
 import { Link, useParams, useSearchParams } from "react-router";
-import Card from "../components/Card";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHooks";
 import Sidebar from "./Sidebar";
 import { useEffect } from "react";
 import { getSharedItemById, getSharedItemByUser } from "../redux/features/userThunks";
+import Card from "../components/cards/Card";
 
 export default function SharedHomePage(){
     const dispatch = useAppDispatch()

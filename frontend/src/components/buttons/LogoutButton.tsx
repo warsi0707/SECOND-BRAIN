@@ -1,5 +1,6 @@
-import { useAppDispatch } from "../hooks/reduxHooks";
-import { logout } from "../redux/features/userSlice";
+import { useAppDispatch } from "../../hooks/reduxHooks"
+import { logout } from "../../redux/features/userSlice"
+
 
 export default function LogoutButton(){
     const dispatch = useAppDispatch()

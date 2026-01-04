@@ -1,15 +1,16 @@
-import { memo, useState } from "react";
-import CardButton from "./CardButton";
+import { lazy, memo, useState } from "react";
+import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
+import useDateFormater from "../../hooks/useDateFormate";
+import { deleteListingThunk } from "../../redux/features/userThunks";
+import CardButton from "../buttons/CardButton";
 import YoutubeEmbed from "./YoutubeEmbed";
-import Tags from "./Tags";
 import TwitterEmbed from "./TwitterEmbed";
 import Document from "./Document";
 import LinksCard from "./LinksCard";
 import NotesCard from "./NotesCard";
-import { useAppDispatch, useAppSelector } from "../hooks/reduxHooks";
-import { deleteListingThunk } from "../redux/features/userThunks";
-import useDateFormater from "../hooks/useDateFormate";
-import ShareBrain from "./share/ShareBrain";
+import Tags from "../Tags";
+
+const ShareBrain = lazy(()=> import("../share/ShareBrain"))
 
 interface Listing {
     _id: string,
